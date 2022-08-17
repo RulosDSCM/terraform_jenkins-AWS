@@ -4,7 +4,7 @@ variable "aws_secret_key" {}
 variable "aws_region" {}
 
 provider "aws" {
-  region     = "us-east-1"
+  region     = var.aws_region
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
@@ -12,7 +12,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket  = "terraform-state-daniel-tutorial-jenkins"
-    key     = "tutorial-jenkins/development/network/terraform.tfstate"
+    key     = "./backend-state/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
